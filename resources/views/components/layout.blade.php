@@ -6,16 +6,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css"/>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {!! SEO::generate() !!}
 </head>
 <body>
 
 
-<div class="min-h-screen dark:bg-gray-800 dark:text-gray-100">
+<div class="min-h-screen dark:bg-gray-800 dark:text-gray-100 bg-gray-200">
     <div class="p-6 space-y-8">
-        <header class="container flex items-center justify-between h-16 px-4 mx-auto rounded dark:bg-gray-900">
-            <a rel="noopener noreferrer" href="/" aria-label="Homepage">
+        <header class="container flex items-center justify-between h-16 px-4 mx-auto rounded dark:bg-gray-900 bg-gray-100">
+            <a rel="noopener noreferrer" href="{{ route('home') }}" aria-label="Homepage">
                 <div class="flex items-center justify-center">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -27,19 +29,30 @@
                     <div class="ml-2 text-xl">Книги</div>
                 </div>
 
-
             </a>
-            <div class="items-center hidden space-x-8 lg:flex">
+            <div class="items-center hidden space-x-4 lg:flex">
                 <div class="space-x-4">
                     <a href="{{ route('genres') }}">Жанры</a>
                     <a href="{{ route('authors') }}">Авторы</a>
                     <a href="{{ route('series') }}">Серии</a>
                 </div>
-                <button class="px-4 py-2 rounded-md dark:bg-violet-400 dark:text-gray-900">Войти</button>
+
+                @auth
+                    <p>Привет, <a class="hover:underline" href="{{ route('dashboard') }}">{{ Auth::user()->name }}!</a>
+                    </p>
+                @endauth
+
+                @guest
+                    <a href="{{ route('register') }}"
+                       class="px-4 py-2 rounded-md bg-violet-400 dark:text-gray-900 text-gray-200">Регистрация</a>
+                    <a href="{{ route('login') }}" class="px-4 py-2 rounded-md bg-violet-400 dark:text-gray-900 text-gray-200">Вход</a>
+                @endguest
+
+
             </div>
             <button class="flex items-center justify-center p-2 lg:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                     class="w-6 h-6 dark:text-gray-50">
+                     class="w-6 h-6 dark:text-gray-50 text-gray-50">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>

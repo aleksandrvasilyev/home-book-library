@@ -1,7 +1,7 @@
 <x-layout>
 
 {{--    @dd($series)--}}
-    <div class="overflow-hidden rounded lg:flex dark:bg-gray-900">
+    <div class="overflow-hidden rounded lg:flex dark:bg-gray-900 bg-gray-100">
         <div class="p-6 lg:p-8 md:flex md:flex-col w-full">
             <div class="flex justify-between items-center">
                 <h1 class="text-3xl font-bold dark:text-gray-50">
@@ -13,7 +13,7 @@
     </div>
 
     @foreach($series as $oneSeries)
-        <div class="px-8 py-4 dark:bg-gray-900 mt-3">
+        <div class="px-8 py-4 dark:bg-gray-900 bg-gray-100 mt-3">
            {{ $oneSeries->SeqNumb }} <a href="/book/{{ $oneSeries->BookId }}" class="hover:underline">{{ $oneSeries->Title }}</a>
         </div>
     @endforeach

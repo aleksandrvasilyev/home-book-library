@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="overflow-hidden rounded lg:flex dark:bg-gray-900">
+    <div class="overflow-hidden rounded lg:flex dark:bg-gray-900 bg-gray-100">
 
         @if($author->File ?? '')
             <img src="https://storagebk.com/flb/author/{{ $author->File }}" alt=""
@@ -9,9 +9,7 @@
                  class="object-cover w-48 h-48 max-h-76 dark:bg-gray-500">
         @endif
 
-
         <div class="p-6 lg:p-8 md:flex md:flex-col w-full">
-
             <div class="flex justify-between items-center mb-3">
                 <h1 class="text-3xl font-bold dark:text-gray-50">
                     {{ $author->FirstName ?? '' }} {{ $author->MiddleName ?? '' }} {{ $author->LastName ?? '' }}

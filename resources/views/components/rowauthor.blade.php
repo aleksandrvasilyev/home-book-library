@@ -1,6 +1,6 @@
 @props(['author'])
 
-<div class="overflow-hidden rounded lg:flex lg:col-span-3 dark:bg-gray-900">
+<div class="overflow-hidden rounded lg:flex lg:col-span-3 dark:bg-gray-900 bg-gray-100">
     @if($author->File)
         <img src="https://storagebk.com/flb/author/{{ $author->File }}" alt=""
              class="object-cover w-48 h-auto max-h-76 dark:bg-gray-500">
