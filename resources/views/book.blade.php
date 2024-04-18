@@ -198,11 +198,13 @@
                                 {{--                                <a rel="noopener noreferrer" href="#"--}}
                                 {{--                                   class=" flex px-3 py-1 rounded-sm hover:underline dark:bg-sky-800 text-white-700">--}}
                                 {{--                                    Скачать epub</a>--}}
-                            @else
+                            @elseif(isset($book->BookFolderNameReal1))
                                 <a rel="noopener noreferrer"
-                                   href="{{ route('download', ['folder' => $book->BookFolderNameReal1, 'file' => $book->BookFileNameReal1]) }}"
+                                   href="{{ route('download', ['folder' => $book->BookFolderNameReal1, 'file' => $book->BookFileNameReal1, 'book_id' => $book->BookId]) }}"
                                    class="flex px-4 py-2 rounded-md dark:bg-violet-400 dark:text-gray-900 hover:bg-violet-500">
                                     Скачать {{ $book->FileType }}</a>
+                            @else
+                                <div class="text-gray-400 justify-center">Файл книги не найден</div>
                             @endif
 
                         </div>
