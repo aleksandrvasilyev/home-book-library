@@ -172,7 +172,7 @@
                                 <div x-data="{ open: false }">
                                     <!-- Кнопка для открытия модального окна -->
                                     <a @click="open = true"
-                                       class="hover:cursor-pointer block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                       class="hover:cursor-pointer block py-2 px-4 hover:bg-gray-100 bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                         Пожаловаться
                                     </a>
 
