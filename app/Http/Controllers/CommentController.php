@@ -27,7 +27,7 @@ class CommentController extends Controller
         $cleanText = $this->clean($validatedData['complaint']);
 
         DB::table('abuse')->insert([
-            'user_id' => auth()->user()->id ?? '',
+            'user_id' => auth()->user()->id ?? 0,
             'comment_id' => $commentId,
             'text' => $cleanText,
             'date' => now(),

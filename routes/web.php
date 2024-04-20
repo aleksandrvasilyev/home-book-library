@@ -25,6 +25,8 @@ Route::get('/series/{series}', [BookController::class, 'oneSeries'])->name('oneS
 Route::get('/dashboard', [ProfileController::class, 'dashboard'])->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::post('/comments/{comment}/abuse', [CommentController::class, 'abuse'])->name('comments.abuse');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/download/{folder}/{file}/{book_id}', [BookController::class, 'download'])->name('download');
@@ -48,7 +50,6 @@ Route::middleware('auth')->group(function () {
 
 
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
-    Route::post('/comments/{comment}/abuse', [CommentController::class, 'abuse'])->name('comments.abuse');
     Route::put('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
 
 

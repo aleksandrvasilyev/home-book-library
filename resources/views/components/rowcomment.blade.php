@@ -53,7 +53,7 @@
 
 
                 <div x-show="show"
-                     class="absolute mt-2 rounded-xl z-50 overflow-auto max-h-52"
+                     class="absolute mt-2 rounded-xl z-50 overflow-auto max-h-52 -ml-28"
                      style="display:none;max-height:300px; overflow:auto;">
 
 
@@ -203,6 +203,7 @@
                                                 <input type="hidden" name="comment_id"
                                                        value="{{ $comment->id }}">
                                                 <textarea name="complaint" rows="4"
+                                                          required
                                                           {{--                                                                          class="w-full p-2 border rounded focus:outline-none focus:ring"--}}
                                                           class="border-2 dark:border-gray-500 border-gray-200 px-2 py-2 w-full text-sm text-gray-900 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
                                                           placeholder="Опишите вашу жалобу"></textarea>
