@@ -16,7 +16,7 @@
 
 <div class="min-h-screen dark:bg-gray-800 dark:text-gray-100 bg-gray-200">
     <div class="p-6 space-y-8">
-        <header x-data="{ show: false }" @click.away="show = false"
+        <header x-data="{ show: false }"
                 class="container flex items-center justify-between h-16 px-4 mx-auto rounded dark:bg-gray-900 bg-gray-100">
             <a rel="noopener noreferrer" href="{{ route('home') }}" aria-label="Homepage">
                 <div class="flex items-center justify-center">
@@ -53,57 +53,49 @@
 
             </div>
 
-                <div x-show="show"
-{{--                     class="py-2 absolute bg-gray-600 mt-8 rounded-xl z-50 overflow-auto max-h-52 mx-20"--}}
-                     class="py-2 absolute bg-gray-600 mt-8 rounded-xl z-50 overflow-auto w-1/2 top-44 left-2/3 transform -translate-x-1/2 -translate-y-1/2 lg:hidden"
-{{--                    class="py-2 absolute bg-gray-600 mt-8 rounded-xl z-50 overflow-auto w-full top-44 left-0 px-4 " --}}
-                     style="display:none;max-height:300px; overflow:auto;">
-                    <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
-                       href="{{ route('genres') }}">
-                        Жанры
-                    </a>
-                    <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
-                       href="{{ route('authors') }}">
-                        Авторы
-                    </a>
+            <div x-show="show" @click.away="show = false"
+                 class="py-2 absolute dark:bg-gray-600 bg-gray-50 mt-8 rounded-xl z-50 overflow-auto w-1/2 top-44 left-2/3 transform -translate-x-1/2 -translate-y-1/2 lg:hidden"
+                 style="display:none;max-height:300px; overflow:auto;">
+                <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
+                   href="{{ route('genres') }}">
+                    Жанры
+                </a>
+                <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
+                   href="{{ route('authors') }}">
+                    Авторы
+                </a>
 
+                <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
+                   href="{{ route('series') }}">
+                    Серии
+                </a>
+
+                @auth
                     <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
-                       href="{{ route('series') }}">
-                        Серии
+                       href="{{ route('dashboard') }}">
+                        {{ Auth::user()->name }}
                     </a>
+                @endauth
+                <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
+                   href="{{ route('register') }}">
+                    Регистрация
+                </a>
+                <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
+                   href="{{ route('login') }}">
+                    Вход
+                </a>
 
-                    @auth
-                        <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
-                           href="{{ route('dashboard') }}">
-                            {{ Auth::user()->name }}
-                        </a>
-                    @endauth
-                    <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
-                       href="{{ route('register') }}">
-                        Регистрация
-                    </a>
-                    <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
-                       href="{{ route('login') }}">
-                        Вход
-                    </a>
-
-
-                </div>
-
+            </div>
 
             <button @click="show = ! show" class="flex items-center justify-center p-2 lg:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                     class="w-6 h-6 dark:text-gray-50 text-gray-50">
+                     class="w-6 h-6 dark:text-gray-50 text-gray-800">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
 
         </header>
-
-
-
-
 
 
         <main>
@@ -120,7 +112,7 @@
             </div>
         </main>
         <footer>
-            <div class="container flex justify-between p-6 mx-auto lg:p-8 dark:bg-gray-900">
+            <div class="container flex justify-between p-6 mx-auto lg:p-8 dark:bg-gray-900 bg-gray-100">
                 <a rel="noopener noreferrer" href="/" class="font-bold">Книги</a>
                 <div class="flex space-x-2">
                     <a href="{{ route('genres') }}">Жанры</a>

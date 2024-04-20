@@ -10,13 +10,18 @@
         <p>{{ mb_substr(strip_tags($book->Body), 0, 200, 'utf-8') }}
         </p>
         <div>
-                        <span
-                            class="self-start px-3 py-1 text-sm rounded-sm dark:bg-slate-700 dark:text-white-900 bg-slate-200">{{ $book->FileType }}</span>
-            <span
-                class="self-start px-3 py-1 text-sm rounded-sm dark:bg-slate-700 dark:text-white-900 bg-slate-200 ">{{ $book->Lang }}</span>
-            <span class="self-start px-3 py-1 text-sm rounded-sm dark:bg-slate-700 dark:text-white-900 bg-slate-200">{{ $book->Pages }} страниц</span>
-            <span
-                class="self-start px-3 py-1 text-sm rounded-sm dark:bg-slate-700 dark:text-white-900 bg-slate-200">{{ @explode(' ', $book->Modified)[0] }}</span>
+            <span class="self-start px-3 mr-2 py-1 text-sm rounded-sm dark:bg-slate-700 dark:text-white-900 bg-slate-200 whitespace-nowrap	">
+                {{ $book->FileType }}
+            </span>
+            <span class="self-start px-3 mr-2 py-1 text-sm rounded-sm dark:bg-slate-700 dark:text-white-900 bg-slate-200 whitespace-nowrap	">
+                {{ $book->Lang }}
+            </span>
+            <span class="self-start px-3 mr-2 py-1 text-sm rounded-sm dark:bg-slate-700 dark:text-white-900 bg-slate-200 whitespace-nowrap	">
+                {{ $book->Pages }} страниц
+            </span>
+            <span class="self-start px-3 py-1 text-sm rounded-sm dark:bg-slate-700 dark:text-white-900 bg-slate-200 whitespace-nowrap	">
+                {{ @explode(' ', $book->Modified)[0] }}
+            </span>
         </div>
     </div>
 </div>

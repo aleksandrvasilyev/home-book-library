@@ -35,60 +35,103 @@
             {{--                    class="object-cover w-52 h-60  dark:bg-gray-500">--}}
             <div class="p-6 lg:p-8 md:flex md:flex-col w-full">
 
-                <div class="flex justify-between items-center mb-3">
-                    <h1 class="text-3xl font-bold dark:text-gray-50">
+                <div class="flex flex-col sm:flex-row justify-between items-center ">
+                    <h1 class="w-full sm:w-auto text-3xl font-bold dark:text-gray-50 mb-6">
                         {{ $book->Title }}
                     </h1>
-                    <span class="text-base dark:text-gray-300 text-gray-300">
-                        <div class="flex items-center">
-                            <div class="mr-4">
-                                <a href="#" x-data="{}"
-                                   @click.prevent="document.querySelector('#likebook-form').submit()"
-                                ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                      stroke-width="1.5"
-                                      stroke="currentColor"
-                                      class="w-7 h-7
-                                       @if($bookLiked) fill-red-500 text-red-500 @endif hover:cursor-pointer hover:text-red-700 hover:fill-red-700">
-                          <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>
-                                    </svg></a></div>
-                            <div><select x-data="{}"
-                                         @change="function () {
-                                    const selectedValue = document.querySelector('#bookStatus').value;
-                                    document.querySelector('#statusInput').value = selectedValue;
-                                    document.querySelector('#statusbook-form').submit();
-                                }"
-                                         id="bookStatus"
-                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pl-3 hover:cursor-pointer"
-                                         name="status">
-                        <option @if(!isset($bookStatus->status)) selected @endif value="0">Статус книги</option>
-                        <option @if(isset($bookStatus->status) && $bookStatus->status === 1) selected @endif value="1">Хочу прочитать 🤗</option>
-                        <option @if(isset($bookStatus->status) && $bookStatus->status === 2) selected @endif value="2">Читаю сейчас 🤓</option>
-                        <option @if(isset($bookStatus->status) && $bookStatus->status === 3) selected @endif value="3">Прочитал(a) 🥳</option>
-                        <option @if(isset($bookStatus->status) && $bookStatus->status === 4) selected @endif value="4">Не дочитал(a) 😒</option>
-                      </select>
-
-                    <form id="statusbook-form" method="POST" action="{{ route('status', $book->BookId) }}"
-                          class="hidden">
-                        @csrf
-                        <input type="hidden" name="status" id="statusInput">
-                    </form>
-
-                    <form id="likebook-form" method="POST" action="{{ route('like', $book->BookId) }}"
-                          class="hidden">
-                        @csrf
-                    </form>
-
-                            </div>
-                        </div>
-
-
-
-
-
-                    </span>
-
+                    <span class="w-full sm:w-auto text-base dark:text-gray-300 text-gray-300">
+        <div class="flex items-center justify-between sm:justify-start">
+            <div class="mr-4">
+                <a href="#" x-data="{}" @click.prevent="document.querySelector('#likebook-form').submit()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                         stroke-width="1.5" stroke="currentColor"
+                         class="w-7 h-7 @if($bookLiked) fill-red-500 text-red-500 @endif hover:cursor-pointer hover:text-red-700 hover:fill-red-700">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>
+                    </svg>
+                </a>
+            </div>
+            <div>
+                <select x-data="{}" @change="function () {
+                    const selectedValue = document.querySelector('#bookStatus').value;
+                    document.querySelector('#statusInput').value = selectedValue;
+                    document.querySelector('#statusbook-form').submit();
+                }" id="bookStatus"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pl-3 hover:cursor-pointer"
+                        name="status">
+                    <option @if(!isset($bookStatus->status)) selected @endif value="0">Статус книги</option>
+                    <option @if(isset($bookStatus->status) && $bookStatus->status === 1) selected @endif value="1">Хочу прочитать 🤗</option>
+                    <option @if(isset($bookStatus->status) && $bookStatus->status === 2) selected @endif value="2">Читаю сейчас 🤓</option>
+                    <option @if(isset($bookStatus->status) && $bookStatus->status === 3) selected @endif value="3">Прочитал(a) 🥳</option>
+                    <option @if(isset($bookStatus->status) && $bookStatus->status === 4) selected @endif value="4">Не дочитал(a) 😒</option>
+                </select>
+                <form id="statusbook-form" method="POST" action="{{ route('status', $book->BookId) }}" class="hidden">
+                    @csrf
+                    <input type="hidden" name="status" id="statusInput">
+                </form>
+                <form id="likebook-form" method="POST" action="{{ route('like', $book->BookId) }}" class="hidden">
+                    @csrf
+                </form>
+            </div>
+        </div>
+    </span>
                 </div>
+
+
+                {{--                <div class="flex justify-between items-center mb-3">--}}
+                {{--                    <h1 class="text-3xl font-bold dark:text-gray-50 sm:w-full">--}}
+                {{--                        {{ $book->Title }}--}}
+                {{--                    </h1>--}}
+                {{--                    <span class="text-base dark:text-gray-300 text-gray-300">--}}
+                {{--                        <div class="flex items-center">--}}
+                {{--                            <div class="mr-4">--}}
+                {{--                                <a href="#" x-data="{}"--}}
+                {{--                                   @click.prevent="document.querySelector('#likebook-form').submit()"--}}
+                {{--                                ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"--}}
+                {{--                                      stroke-width="1.5"--}}
+                {{--                                      stroke="currentColor"--}}
+                {{--                                      class="w-7 h-7--}}
+                {{--                                       @if($bookLiked) fill-red-500 text-red-500 @endif hover:cursor-pointer hover:text-red-700 hover:fill-red-700">--}}
+                {{--                          <path stroke-linecap="round" stroke-linejoin="round"--}}
+                {{--                                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>--}}
+                {{--                                    </svg></a></div>--}}
+                {{--                            <div><select x-data="{}"--}}
+                {{--                                         @change="function () {--}}
+                {{--                                    const selectedValue = document.querySelector('#bookStatus').value;--}}
+                {{--                                    document.querySelector('#statusInput').value = selectedValue;--}}
+                {{--                                    document.querySelector('#statusbook-form').submit();--}}
+                {{--                                }"--}}
+                {{--                                         id="bookStatus"--}}
+                {{--                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pl-3 hover:cursor-pointer"--}}
+                {{--                                         name="status">--}}
+                {{--                        <option @if(!isset($bookStatus->status)) selected @endif value="0">Статус книги</option>--}}
+                {{--                        <option @if(isset($bookStatus->status) && $bookStatus->status === 1) selected @endif value="1">Хочу прочитать 🤗</option>--}}
+                {{--                        <option @if(isset($bookStatus->status) && $bookStatus->status === 2) selected @endif value="2">Читаю сейчас 🤓</option>--}}
+                {{--                        <option @if(isset($bookStatus->status) && $bookStatus->status === 3) selected @endif value="3">Прочитал(a) 🥳</option>--}}
+                {{--                        <option @if(isset($bookStatus->status) && $bookStatus->status === 4) selected @endif value="4">Не дочитал(a) 😒</option>--}}
+                {{--                      </select>--}}
+
+                {{--                    <form id="statusbook-form" method="POST" action="{{ route('status', $book->BookId) }}"--}}
+                {{--                          class="hidden">--}}
+                {{--                        @csrf--}}
+                {{--                        <input type="hidden" name="status" id="statusInput">--}}
+                {{--                    </form>--}}
+
+                {{--                    <form id="likebook-form" method="POST" action="{{ route('like', $book->BookId) }}"--}}
+                {{--                          class="hidden">--}}
+                {{--                        @csrf--}}
+                {{--                    </form>--}}
+
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+
+
+
+
+
+                {{--                    </span>--}}
+
+                {{--                </div>--}}
 
                 @if($book->Title1)
                     <i class="text-gray-400 mt-0">{{ $book->Title1 }}</i>
@@ -118,7 +161,9 @@
                         <div
                             class="grid grid-cols-1 gap-1 py-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4 even:dark:bg-gray-800">
                             <dt class="font-medium text-gray-900 dark:text-white pl-3">Раздел</dt>
-                            <dd class="text-gray-700 sm:col-span-2 dark:text-gray-200 pl-3"><a class="underline hover:text-blue-400" href="{{ route('genre', $book->GenreId) }}">{{ $book->GenreDesc }}</a></dd>
+                            <dd class="text-gray-700 sm:col-span-2 dark:text-gray-200 pl-3"><a
+                                    class="underline hover:text-blue-400"
+                                    href="{{ route('genre', $book->GenreId) }}">{{ $book->GenreDesc }}</a></dd>
                         </div>
 
                         <div
@@ -448,7 +493,6 @@
             @endforeach
 
         </div>
-
 
 
     </section>
