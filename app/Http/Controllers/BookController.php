@@ -67,6 +67,14 @@ class BookController extends Controller
     }
 
 
+    public function getSeries($ids)
+    {
+        return DB::table('libseqname')
+            ->select('*')
+            ->whereIn('SeqId', $ids)
+            ->get();
+    }
+
     public function getAuthors($ids)
     {
         return DB::table('libavtorname')
@@ -306,7 +314,7 @@ class BookController extends Controller
         }
 
         SEOTools::setTitle(str_replace('[название]', $search, config('seo.search.title')));
-        SEOTools::setDescription(str_replace('[название]',$search, config('seo.search.description')));
+        SEOTools::setDescription(str_replace('[название]', $search, config('seo.search.description')));
         SEOTools::opengraph()->setUrl(config('seo.search.og_url'));
         SEOTools::setCanonical(route('search'));
 //        SEOTools::opengraph()->addProperty('type', 'articles');
@@ -437,31 +445,43 @@ class BookController extends Controller
 //        SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite(config('seo.authors.twitter_title'));
 
-        $page = request()->get('page', 1);
 
-        $totalAuthors = Cache::remember('total_authors', 1440, function () {
-            return DB::table('libavtor')->distinct()->count('AvtorId');
-        });
+        $authorIds = DB::table('libavtorname')
+            ->orderBy('AvtorId', 'desc')
+            ->paginate(10, ['AvtorId']);
 
-        $uniqueAuthorIds = DB::table('libavtor')
-            ->distinct()
-            ->forPage($page, 20) // $page должен быть определен или получен от запроса
-            ->pluck('AvtorId');
 
-        $authors = $this->getAuthors($uniqueAuthorIds->toArray());
+        $authorIdsToArray = $authorIds->pluck('AvtorId')->toArray();
+
+        $authors = $this->getAuthors($authorIdsToArray);
+
+//        dd($authors);
+
+//        $page = request()->get('page', 1);
+//
+//        $totalAuthors = Cache::remember('total_authors', 1440, function () {
+//            return DB::table('libavtor')->distinct()->count('AvtorId');
+//        });
+
+//        $uniqueAuthorIds = DB::table('libavtor')
+//            ->distinct()
+//            ->forPage($page, 20)
+//            ->pluck('AvtorId');
+
+//        $authors = $this->getAuthors($uniqueAuthorIds->toArray());
 
         // Формируем объект пагинации вручную, чтобы использовать кэшированное общее количество
-        $pagination = new LengthAwarePaginator(
-            $authors,
-            $totalAuthors,
-            20,
-            Paginator::resolveCurrentPage(),
-            ['path' => Paginator::resolveCurrentPath()]
-        );
+//        $pagination = new LengthAwarePaginator(
+//            $authors,
+//            $totalAuthors,
+//            20,
+//            Paginator::resolveCurrentPage(),
+//            ['path' => Paginator::resolveCurrentPath()]
+//        );
 
         return view('authors', [
             'authors' => $authors,
-            'pagination' => $pagination
+            'pagination' => $authorIds
         ]);
 
 
@@ -527,11 +547,21 @@ class BookController extends Controller
 //        SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite(config('seo.series.twitter_title'));
 
-        $series = DB::table('libseqname')
-            ->paginate(20);
+//        $series = DB::table('libseqname')
+//            ->paginate(20);
+
+        $seriesIds = DB::table('libseqname')
+            ->orderBy('SeqId', 'desc')
+            ->paginate(20, ['SeqId']);
+
+        $seriesIdsToArray = $seriesIds->pluck('SeqId')->toArray();
+        $series = $this->getSeries($seriesIdsToArray);
+
+//        dd($authors);
 
         return view('series', [
             'series' => $series,
+            'paginate' => $seriesIds
         ]);
     }
 
@@ -557,7 +587,6 @@ class BookController extends Controller
         SEOTools::setCanonical(route('oneSeries', $seriesId));
 //        SEOTools::opengraph()->addProperty('type', 'articles');
         SEOTools::twitter()->setSite(config('seo.oneSeries.twitter_title'));
-
 
 
         return view('oneSeries', [

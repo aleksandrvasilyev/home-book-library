@@ -16,7 +16,8 @@
 
 <div class="min-h-screen dark:bg-gray-800 dark:text-gray-100 bg-gray-200">
     <div class="p-6 space-y-8">
-        <header class="container flex items-center justify-between h-16 px-4 mx-auto rounded dark:bg-gray-900 bg-gray-100">
+        <header x-data="{ show: false }" @click.away="show = false"
+                class="container flex items-center justify-between h-16 px-4 mx-auto rounded dark:bg-gray-900 bg-gray-100">
             <a rel="noopener noreferrer" href="{{ route('home') }}" aria-label="Homepage">
                 <div class="flex items-center justify-center">
                     <div>
@@ -45,19 +46,66 @@
                 @guest
                     <a href="{{ route('register') }}"
                        class="px-4 py-2 rounded-md bg-violet-400 dark:text-gray-900 text-gray-200">Регистрация</a>
-                    <a href="{{ route('login') }}" class="px-4 py-2 rounded-md bg-violet-400 dark:text-gray-900 text-gray-200">Вход</a>
+                    <a href="{{ route('login') }}"
+                       class="px-4 py-2 rounded-md bg-violet-400 dark:text-gray-900 text-gray-200">Вход</a>
                 @endguest
 
 
             </div>
-            <button class="flex items-center justify-center p-2 lg:hidden">
+
+                <div x-show="show"
+{{--                     class="py-2 absolute bg-gray-600 mt-8 rounded-xl z-50 overflow-auto max-h-52 mx-20"--}}
+                     class="py-2 absolute bg-gray-600 mt-8 rounded-xl z-50 overflow-auto w-1/2 top-44 left-2/3 transform -translate-x-1/2 -translate-y-1/2 lg:hidden"
+{{--                    class="py-2 absolute bg-gray-600 mt-8 rounded-xl z-50 overflow-auto w-full top-44 left-0 px-4 " --}}
+                     style="display:none;max-height:300px; overflow:auto;">
+                    <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
+                       href="{{ route('genres') }}">
+                        Жанры
+                    </a>
+                    <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
+                       href="{{ route('authors') }}">
+                        Авторы
+                    </a>
+
+                    <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
+                       href="{{ route('series') }}">
+                        Серии
+                    </a>
+
+                    @auth
+                        <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
+                           href="{{ route('dashboard') }}">
+                            {{ Auth::user()->name }}
+                        </a>
+                    @endauth
+                    <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
+                       href="{{ route('register') }}">
+                        Регистрация
+                    </a>
+                    <a class="block text-left px-3 py-2 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white"
+                       href="{{ route('login') }}">
+                        Вход
+                    </a>
+
+
+                </div>
+
+
+            <button @click="show = ! show" class="flex items-center justify-center p-2 lg:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                      class="w-6 h-6 dark:text-gray-50 text-gray-50">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
+
         </header>
+
+
+
+
+
+
         <main>
             <div class="container mx-auto space-y-16">
 
@@ -85,6 +133,12 @@
     </div>
 </div>
 
-
+@if(session('message'))
+    <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show"
+         @click="show = false"
+         class="fixed bottom-3 right-3 bg-green-500 text-white py-2 px-4 rounded-lg cursor-pointer">
+        {{ session('message') }}
+    </div>
+@endif
 </body>
 </html>

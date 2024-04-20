@@ -5,7 +5,7 @@
             Серии
         </h2>
         <span class="text-base dark:text-gray-300">
-        Страница {{ $series->currentPage() }} из {{ $series->lastPage() }}
+        Страница {{ $paginate->currentPage() }} из {{ $paginate->lastPage() }}
     </span>
     </div>
 
@@ -16,7 +16,7 @@
     </div>
 
 {{--    <div class="mt-6">{{ $pagination->links() }}</div>--}}
-    <div class="mt-6">{{ $series->links() }}</div>
+    <div class="mt-6">{{ $paginate->links() }}</div>
 
 
 </x-layout>
