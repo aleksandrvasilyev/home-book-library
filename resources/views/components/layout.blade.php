@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css"/>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="google-site-verification" content="taQkUkWrLd_qrdoxXAGfqK2Zj7wItRMoAWaZ_uz_rLI" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {!! SEO::generate() !!}
 </head>
@@ -133,16 +134,6 @@
     </div>
 @endif
 
-<div style="display:none;">
-    <script>(function (d, s) {
-            d.getElementById("licnt31FB").src =
-                "https://counter.yadro.ru/hit?t52.6;r" + escape(d.referrer) +
-                ((typeof (s) == "undefined") ? "" : ";s" + s.width + "*" + s.height + "*" +
-                    (s.colorDepth ? s.colorDepth : s.pixelDepth)) + ";u" + escape(d.URL) +
-                ";h" + escape(d.title.substring(0, 150)) + ";" + Math.random()
-        })
-        (document, screen)</script>
-</div>
 
 </body>
 </html>
