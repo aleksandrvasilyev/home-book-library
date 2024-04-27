@@ -134,6 +134,14 @@
     </div>
 @endif
 
+<div style="display:none;">
+    <!--LiveInternet counter--><script>(function(d,s){d.getElementById("licntAC19").src=
+            "https://counter.yadro.ru/hit?t52.6;r"+escape(d.referrer)+
+            ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+            ";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+        (document,screen)</script><!--/LiveInternet-->
 
+</div>
 </body>
 </html>
