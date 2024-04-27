@@ -135,12 +135,16 @@
 @endif
 
 <div style="display:none;">
-    <!--LiveInternet counter--><script>(function(d,s){d.getElementById("licntAC19").src=
+    <!--LiveInternet counter--> <img id="licntDBA5" width="88" height="31" style="border:0"
+                                                       title="LiveInternet: показано число просмотров и посетителей за 24 часа"
+                                                       src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                                                       alt=""/><script>(function(d,s){d.getElementById("licntDBA5").src=
             "https://counter.yadro.ru/hit?t52.6;r"+escape(d.referrer)+
             ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
                 (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
             ";h"+escape(d.title.substring(0,150))+";"+Math.random()})
         (document,screen)</script><!--/LiveInternet-->
+
 
 </div>
 </body>
