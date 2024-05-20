@@ -9,7 +9,6 @@
             </a>
         </div>
 
-
         <div class="dark:bg-gray-900 bg-gray-100 p-6 flex justify-center items-center">
             <a href="{{ route('genre', 90 ) }}">
                 <img class="w-32 mb-2" src="https://storagebk.com/image/demo/2.webp" alt="Публицистика">
