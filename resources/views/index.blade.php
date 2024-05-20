@@ -1,59 +1,66 @@
 <x-layout>
     <h2 class="text-2xl mb-4">Жанры книг</h2>
-    <div class="grid lg:grid-cols-8 md:grid-cols-4 sm:grid-cols-2 mb-6 gap-6 text-center">
+    <div class="grid lg:grid-cols-8 md:grid-cols-4 sm:grid-cols-2 grid-cols-2 mb-6 gap-6 text-center">
 
         <div class="dark:bg-gray-900 bg-gray-100 p-6 flex justify-center items-center">
             <a href="{{ route('genre', 24 ) }}" >
-                <img class="w-32 mb-2 text-center" src="https://storagebk.com/image/demo/1.webp" alt="Детектив">
-                Детектив
+                <img class="w-28 mb-2 text-center" src="https://storagebk.com/image/demo/1.webp" alt="Детектив">
+                <span class="sm:text-base text-sm">Детектив</span>
             </a>
         </div>
 
         <div class="dark:bg-gray-900 bg-gray-100 p-6 flex justify-center items-center">
             <a href="{{ route('genre', 90 ) }}">
-                <img class="w-32 mb-2" src="https://storagebk.com/image/demo/2.webp" alt="Публицистика">
-                Публицистика
+                <img class="w-28 mb-2" src="https://storagebk.com/image/demo/2.webp" alt="Публицистика">
+
+                <span class="sm:text-base text-sm">Публицистика</span>
             </a>
         </div>
 
         <div class="dark:bg-gray-900 bg-gray-100 p-6 flex justify-center items-center">
             <a href="{{ route('genre', 37 ) }}">
-                <img class="w-32 mb-2" src="https://storagebk.com/image/demo/3.webp" alt="Любовные романы">
-                Любовные романы
+                <img class="w-28 mb-2" src="https://storagebk.com/image/demo/3.webp" alt="Любовные романы">
+
+                <span class="sm:text-base text-sm">Любовные романы</span>
             </a>
         </div>
 
         <div class="dark:bg-gray-900 bg-gray-100 p-6 flex justify-center items-center">
             <a href="{{ route('genre', 226 ) }}">
-                <img class="w-32 mb-2" src="https://storagebk.com/image/demo/4.webp" alt="Фантастика">
-                Фантастика
+                <img class="w-28 mb-2" src="https://storagebk.com/image/demo/4.webp" alt="Фантастика">
+
+                <span class="sm:text-base text-sm">Фантастика</span>
             </a>
         </div>
 
         <div class="dark:bg-gray-900 bg-gray-100 p-6 flex justify-center items-center">
             <a href="{{ route('genre', 11 ) }}">
-                <img class="w-32 mb-2" src="https://storagebk.com/image/demo/5.webp" alt="Фэнтези">
-                Фэнтези
+                <img class="w-28 mb-2" src="https://storagebk.com/image/demo/5.webp" alt="Фэнтези">
+
+                <span class="sm:text-base text-sm">Фэнтези</span>
             </a>
         </div>
 
         <div class="dark:bg-gray-900 bg-gray-100 p-6 flex justify-center items-center">
             <a href="{{ route('genre', 213 ) }}">
-                <img class="w-32 mb-2" src="https://storagebk.com/image/demo/6.webp" alt="Самиздат">
-                Самиздат
+                <img class="w-28 mb-2" src="https://storagebk.com/image/demo/6.webp" alt="Самиздат">
+
+                <span class="sm:text-base text-sm">Самиздат</span>
             </a>
         </div>
 
         <div class="dark:bg-gray-900 bg-gray-100 p-6 flex justify-center items-center">
             <a href="{{ route('genre', 25 ) }}">
-                <img class="w-32 mb-2" src="https://storagebk.com/image/demo/7.webp" alt="Проза">
-                Проза
+                <img class="w-28 mb-2" src="https://storagebk.com/image/demo/7.webp" alt="Проза">
+
+                <span class="sm:text-base text-sm">Проза</span>
             </a>
         </div>
         <div class="dark:bg-gray-900 bg-gray-100 p-6 flex justify-center items-center">
             <a href="{{ route('genre', 62 ) }}">
-                <img class="w-32 mb-2" src="https://storagebk.com/image/demo/9.webp" alt="Психология">
-                Психология
+                <img class="w-28 mb-2" src="https://storagebk.com/image/demo/9.webp" alt="Психология">
+
+                <span class="sm:text-base text-sm">Психология</span>
             </a>
         </div>
     </div>
