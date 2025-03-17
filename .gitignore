@@ -22,3 +22,5 @@ yarn-error.log
 /storage/app/
 /storage/clockwork/
 /storage/framework/
+
+.DS_Store
